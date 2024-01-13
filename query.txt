@@ -1,0 +1,158 @@
+query FullSearch($input: SearchQueryInput!, $geniusVipUI: GeniusVipUIsInput) {
+  searchQueries {
+    search(input: $input) {
+      ...FullSearchFragment
+      __typename
+    }
+    __typename
+  }
+  geniusVipEnrolledProgram(input: $geniusVipUI) {
+    ...geniusVipEnrolledProgram
+    __typename
+  }
+}
+
+fragment FullSearchFragment on SearchQueryOutput {
+  results {
+    ...BasicPropertyData
+	...MatchingUnitConfigurations
+    priceDisplayInfoIrene {
+      ...PriceDisplayInfoIrene
+      __typename
+    }
+    licenseDetails {
+      nextToHotelName
+      __typename
+    }
+    inferredLocationScore
+    isTpiExclusiveProperty
+    trackOnView {
+      experimentTag
+      __typename
+    }
+    __typename
+  }
+  __typename
+}
+
+fragment BasicPropertyData on SearchResultProperty {
+  basicPropertyData {
+    location {
+      address
+      city
+      countryCode
+      __typename
+    }
+	pageName
+    __typename
+  }
+  displayName {
+    text
+    __typename
+  }
+  location {
+    displayLocation
+    mainDistance
+    __typename
+  }
+  showGeniusLoginMessage
+ 
+  __typename
+}
+
+fragment PriceDisplayInfoIrene on PriceDisplayInfoIrene {
+  displayPrice {
+    amountPerStay {
+      amountUnformatted
+      currency
+      __typename
+    }
+    __typename
+  }
+  __typename
+}
+
+fragment MatchingUnitConfigurations on SearchResultProperty {
+  matchingUnitConfigurations {
+    commonConfiguration {
+      name
+      unitId
+      bedConfigurations {
+        beds {
+          count
+          type
+          __typename
+        }
+        nbAllBeds
+        __typename
+      }
+      nbAllBeds
+      nbBathrooms
+      nbBedrooms
+      nbKitchens
+      nbLivingrooms
+      nbUnits
+      unitTypeNames {
+        translation
+        __typename
+      }
+      localizedArea {
+        localizedArea
+        unit
+        __typename
+      }
+      __typename
+    }
+    unitConfigurations {
+      name
+      unitId
+      bedConfigurations {
+        beds {
+          count
+          type
+          __typename
+        }
+        nbAllBeds
+        __typename
+      }
+      apartmentRooms {
+        config {
+          roomId: id
+          roomType
+          bedTypeId
+          bedCount: count
+          __typename
+        }
+        roomName: tag {
+          tag
+          translation
+          __typename
+        }
+        __typename
+      }
+      nbAllBeds
+      nbBathrooms
+      nbBedrooms
+      nbKitchens
+      nbLivingrooms
+      nbUnits
+      unitTypeNames {
+        translation
+        __typename
+      }
+      localizedArea {
+        localizedArea
+        unit
+        __typename
+      }
+      unitTypeId
+      __typename
+    }
+    __typename
+  }
+  __typename
+}
+
+fragment geniusVipEnrolledProgram on GeniusVipEnrolledProgram {
+  __typename
+}
